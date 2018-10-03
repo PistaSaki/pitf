@@ -3,7 +3,7 @@ import numpy as np
 from pandas import DataFrame
 from collections import OrderedDict
 
-from . import tf_runnables_02 as tf_runnables
+from . import tf_runnables
 from . import ptf
 
 def variable_from_series(
