@@ -244,7 +244,7 @@ def cast(x, dtype):
     if is_tf_object(x):
         return tf.cast(x, dtype)
     else:
-        return x.astype(dtype)
+        return np.array(x, dtype = dtype)
         
 def maximum(x, y):
     if any_is_tf(x,y):
