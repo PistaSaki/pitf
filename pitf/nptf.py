@@ -234,11 +234,24 @@ def reduce_mean(x, axis = None, keepdims = False, name = None):
         return np.mean(x, axis = axis, keepdims = keepdims)
         
 
-def reduce_prod(x, axis = None):
+def reduce_prod(x, axis = None, keepdims = False, name = None):
     if any_is_tf(x, axis):
-        return tf.reduce_prod(x, axis = axis)
+        return tf.reduce_prod(x, axis = axis, keepdims = keepdims, name = name)
     else:
-        return np.prod(x, axis = axis)
+        return np.prod(x, axis = axis, keepdims = keepdims)
+
+def reduce_all(x, axis = None, keepdims = False, name = None):
+    if any_is_tf(x, axis):
+        return tf.reduce_all(x, axis = axis, keepdims = keepdims, name = name)
+    else:
+        return np.all(x, axis = axis, keepdims = keepdims)
+
+def reduce_any(x, axis = None, keepdims = False, name = None):
+    if any_is_tf(x, axis):
+        return tf.reduce_any(x, axis = axis, keepdims = keepdims, name = name)
+    else:
+        return np.any(x, axis = axis, keepdims = keepdims)
+
         
 def cast(x, dtype):
     if is_tf_object(x):
