@@ -104,6 +104,19 @@ def batched_gather_nd(a, indices, batch_ndim):
         
     
     return gather_nd(a, augmented_indices)
+
+def boolean_mask(tensor, mask, name = "boolean_mask", axis = 0):
+    if any_is_tf(tensor, mask, axis):
+        return tf.boolean_mask(tensor=tensor, mask=mask, name=name, axis=axis)
+    else:
+        a = np.array(tensor)
+        axis = int(axis)
+        assert -a.ndim < axis < a.ndim
+        if axis < 0:
+            axis += a.ndim
+        selector = axis * (slice(None), ) + (mask, )
+        return a[selector]
+        
     
 
 
